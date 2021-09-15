@@ -15,6 +15,17 @@ trait SimpleRunnableAkkaApp extends App {
   runIt.onComplete(_ => system.terminate())
 }
 
+trait PrintResultRunnableAkkaApp extends App {
+
+  def runIt: Future[Any]
+
+  implicit val system: ActorSystem = ActorSystem(getClass.getSimpleName.replaceAll("[^\\w]", ""))
+  implicit val ec: ExecutionContextExecutor = system.dispatcher
+  val result: Future[Any] = runIt
+  result.foreach(c => println(s"Result: ${c.toString}"))
+  result.onComplete(_ => system.terminate())
+}
+
 trait GraphRunnableAkkaApp extends App {
   def buildGraph: RunnableGraph[_]
 
