@@ -1,3 +1,5 @@
+package base
+
 import akka.actor.ActorSystem
 
 import scala.concurrent.{ExecutionContextExecutor, Future}

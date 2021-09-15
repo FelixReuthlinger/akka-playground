@@ -1,3 +1,5 @@
+package base
+
 import akka.NotUsed
 import akka.stream.IOResult
 import akka.stream.scaladsl.{FileIO, Flow, Keep, Sink, Source}
@@ -14,8 +16,6 @@ object Factorial extends SimpleRunnableAkkaApp {
   def runIt: Future[IOResult] = {
     val source: Source[Int, NotUsed] = Source(1 to 100)
     val factorials = source.scan(BigInt(1))((acc, next) => acc * next)
-    val result: Future[IOResult] =
-      factorials.map(_.toString).runWith(lineSink("factorial2.txt"))
-    result
+    factorials.map(_.toString).runWith(lineSink("factorial2.txt"))
   }
 }
