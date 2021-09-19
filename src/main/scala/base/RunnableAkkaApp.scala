@@ -6,7 +6,7 @@ import akka.stream.scaladsl.{RunnableGraph, Tcp}
 import scala.concurrent.{ExecutionContextExecutor, Future}
 
 trait SimplerClassName {
-  def getSimplerClassName = getClass.getSimpleName.replaceAll("[^\\w]", "")
+  def getSimplerClassName: String = getClass.getSimpleName.replaceAll("[^\\w]", "")
 }
 
 trait SimpleActorSystem extends SimplerClassName {
