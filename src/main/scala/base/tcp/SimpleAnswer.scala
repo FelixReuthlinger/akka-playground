@@ -4,7 +4,7 @@ import akka.Done
 import akka.stream.scaladsl.Tcp.{IncomingConnection, ServerBinding}
 import akka.stream.scaladsl._
 import akka.util.ByteString
-import base.{BetterRunnableAkkaApp, SimpleRunnableAkkaApp}
+import base.SimpleRunnableAkkaApp
 
 import scala.concurrent.Future
 
@@ -32,7 +32,7 @@ object BetterAnswer extends SimpleRunnableAkkaApp {
     val connections: Source[IncomingConnection, Future[ServerBinding]] =
       Tcp().bind("localhost", 1234)
 
-    connections.runForeach( connection => {
+    connections.runForeach(connection => {
       // server logic, parses incoming commands
       val commandParser = Flow[String].takeWhile(_ != "BYE").map(_ + "!")
 
