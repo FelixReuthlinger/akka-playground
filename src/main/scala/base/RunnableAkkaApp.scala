@@ -1,7 +1,7 @@
 package base
 
-import akka.NotUsed
 import akka.actor.ActorSystem
+import akka.stream.scaladsl.Tcp.ServerBinding
 import akka.stream.scaladsl.{RunnableGraph, Tcp}
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
